@@ -6,17 +6,10 @@ var tipController = require('../controllers/tip_controller');
 var userController = require('../controllers/user_controller');
 var sessionController = require('../controllers/session_controller');
 
-//-----------------------------------------------------------
 
 // autologout
 router.all('*',sessionController.deleteExpiredUserSession);
 
-//-----------------------------------------------------------
-
-
-//-----------------------------------------------------------
-
-// History
 
 function redirectBack(req, res, next) {
 
@@ -34,8 +27,6 @@ router.get(/(?!\/new$|\/edit$|\/play$|\/check$|\/session$|\/(\d+)$)\/[^\/]*$/, f
     next();
 });
 
-//-----------------------------------------------------------
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index');
@@ -50,10 +41,14 @@ router.get('/ayuda', function(req, res, next) {
 });
 
 
+
+
+
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
 router.param('userId', userController.load);
 router.param('tipId',  tipController.load);
+
 
 
 // Definición de rutas de sesion
@@ -118,6 +113,9 @@ router.get('/quizzes/:quizId(\\d+)/play',
     quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check',
     quizController.check);
+
+// Definición de rutas de tips
+
 
 
 router.get('/quizzes/:quizId(\\d+)/tips/new',
