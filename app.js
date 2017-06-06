@@ -8,7 +8,6 @@ var session = require('express-session');
 var partials = require('express-partials');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
-var methodOverride = ('method-override');
 
 var index = require('./routes/index');
 
@@ -28,7 +27,6 @@ app.use(session({secret: "Quiz 2017",
     resave: false,
     saveUninitialized: true}));
 app.use(methodOverride('_method', {methods: ["POST", "GET"]}));
-//app.use(methodOverride('_method', {methods: ["POST", "GET"]}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 app.use(flash());
