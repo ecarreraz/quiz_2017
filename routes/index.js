@@ -3,7 +3,7 @@ var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller');
 
-
+/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
@@ -12,19 +12,14 @@ router.get('/', function(req, res, next) {
 router.get('/author', function(req, res, next) {
     res.render('author');
 });
-
-// Pagina del Juego
-router.get('/quizzes/random_play', function(req, res, next) {
-    res.render('random_play');
+router.get('/ayuda', function(req, res, next) {
+    res.render('ayuda');
 });
 
-// Pagina de Ayuda
-router.get('/help', function(req, res, next) {
-    res.render('help');
-});
 
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
+
 
 // Definición de rutas de /quizzes
 router.get('/quizzes',                     quizController.index);
@@ -37,5 +32,10 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
+
+router.get('/quizzes/randomplay',  quizController.randomplay);
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
+
+
 
 module.exports = router;
